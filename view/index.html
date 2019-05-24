@@ -2,7 +2,7 @@
 <html lang="en"> 
 
 <head>
-  <title>Vehicles typescriptcon</title>
+  <title>Rocket's race</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -51,31 +51,45 @@
   </nav>
 
   <div style="margin-top:30px">
+    <h1> setup Rocket race</h1>
     <div class="row">
-      <div class="col-sm-6 ">
+      <div class="col-sm-4 ">
         <div id="formCarId">
-          <h1> Input Car details</h1>
+          
           <div class="form-group">
-            <label>Number Plate</label><br>
-            <input type="text" name="inputplateForm" id="inputPlate" value="1234-asd" class="form-control">
-            <p id="errNumPlate" class="text-danger"></p>
+            <label>choose Rocket 1</label><br>
+            <input type="text" name="rocket1" id="Rocket1Id1" value="32WESSDS" class="form-control">
+            <p id="errRocket1" class="text-danger"></p>
           </div>
           <div class="form-group">
-            <label>Brand</label><br>
-            <input type="text" name="inputMadeForm" id="inputBranch" value="bdfd" class="form-control">
+            <label>number of Thrusters</label><br>
+            <input type="text" name="inputMadeForm" id="numThrustersId" value="3" class="form-control">
           </div>
-          <div class="form-group">
-            <label>Color</label><br>
-            <input type="text" name="inputColorForm" id="inputColor" value="cdf" class="form-control">
-          </div>
-
           <p>
-            <button class="btn btn-primary" onclick="carFormSubmit()">Create car</button>
+            <button class="btn btn-primary" onclick="carFormSubmit()">Create Rocket</button>
           </p>
 
         </div>
-        <!--end formCar-->
+        <!--end form Rocket 1-->
       </div> 
+      <div class="col-sm-4 ">
+        <div id="formCarId">
+      <div class="form-group">
+        <label>choose Rocket 2</label><br>
+        <input type="text" name="rocket2" id="Rocket1Id2" value="LDSFJA32" class="form-control">
+        <p id="errRocket2" class="text-danger"></p>
+      </div>
+      <div class="form-group">
+        <label>number of Thrusters</label><br>
+        <input type="text" name="inputMadeForm" id="numThrustersId" value="3" class="form-control">
+      </div>
+      <p>
+        <button class="btn btn-primary" onclick="carFormSubmit()">Create Rocket</button>
+      </p>
+
+    </div>
+    </div>
+    
     </div><!-- end row-->
       <div class="row">
         <div class="col-sm-12 form-group">
