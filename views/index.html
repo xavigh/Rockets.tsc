@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en"> 
+
+<head>
+  <title>Rocket's race</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../views/css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+
+</head>
+
+<body class="container">
+
+  <div class="text-center" style="margin-bottom:0;">
+    <h1>Exercici typescript Rockets MVC</h1>
+    <p>HTML5, CSS, Bootstrap4, Javascript, typescript using MVC architecture.</p>
+  </div>
+
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div style="margin-top:30px">
+    <h1>  Rocket race</h1>
+    <div class="row">
+      <div class="col-sm-4 ">
+        <div id="formCarId">
+          
+          <div class="form-group">
+            <label>create rocket 1</label><br>
+          </div>
+          <p>
+            <button class="btn btn-primary" onclick="createRocket1()">Create Rocket 1</button>
+          </p>
+
+        </div>
+        <!--end form Rocket 1-->
+      </div> 
+      <div class="col-sm-4 ">
+        <div id="formRocketId">
+     
+      <div class="form-group">
+        <label>create rocket 2</label><br>
+      </div>
+      <p>
+        <button class="btn btn-primary" onclick="createRocket2()">Create Rocket 2</button>
+      </p>
+
+    </div>
+    </div>
+    
+    </div><!-- end row-->
+    
+      </div>
+      <div class="w-75 ">
+        
+        <div id="rocket1Info"> </div>
+        
+        <div id="rocket2Info"> </div>
+
+      </div>
+    </div>
+    <div  id="sticky-footer" class="fixed-bottom bg-dark text-white-50"  >
+      <div class="container text-center">
+        <small>Copyright &copy; Your Website</small>
+      </div>
+    </div>
+  </div>
+  
+  <script src="../controllers/mycontroller.js"></script>
+  <script src="../views/js/myview.js"></script>
+  <script src="../models/thruster.js"></script>
+  <script src="../models/rocket.js"></script>
+
+</body>
+
+</html>
