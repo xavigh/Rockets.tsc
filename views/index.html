@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 
 <head>
   <title>Rocket's race</title>
@@ -12,6 +12,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
 
@@ -45,52 +47,65 @@
   </nav>
 
   <div style="margin-top:30px">
-    <h1>  Rocket race</h1>
+    <h1> Rocket race</h1>
     <div class="row">
       <div class="col-sm-4 ">
         <div id="formCarId">
-          
+
           <div class="form-group">
             <label>create rocket 1</label><br>
           </div>
           <p>
             <button class="btn btn-primary" onclick="createRocket1()">Create Rocket 1</button>
+            <button class="btn btn-primary" onclick="rocket1.accelerate(rocket1)">Accelerate rocket1</button>
+            <button class="btn btn-primary" onclick="rocket1.breakRocket(rocket1)">Break </button>
           </p>
 
         </div>
+        <div id="rocket1Info"> </div>
         <!--end form Rocket 1-->
-      </div> 
+      </div>
       <div class="col-sm-4 ">
         <div id="formRocketId">
-     
-      <div class="form-group">
-        <label>create rocket 2</label><br>
-      </div>
-      <p>
-        <button class="btn btn-primary" onclick="createRocket2()">Create Rocket 2</button>
-      </p>
 
-    </div>
-    </div>
-    
+          <div class="form-group">
+            <label>create rocket 2</label><br>
+          </div>
+          <p>
+            <button class="btn btn-primary" onclick="createRocket2()">Create Rocket 2</button>
+            <button class="btn btn-primary" onclick="rocket2.accelerate(rocket2)">Accelerate rocket2</button>
+            <button class="btn btn-primary" onclick="rocket2.breakRocket(rocket2)">Break </button>
+            <div id="rocket2Info"> </div>
+          </p>
+
+        </div>
+
+      </div>
     </div><!-- end row-->
-    
-      </div>
-      <div class="w-75 ">
-        
-        <div id="rocket1Info"> </div>
-        
-        <div id="rocket2Info"> </div>
-
-      </div>
+    <div>
+      <span style=" color: Tomato;">
+        <p id="rocketId1" class="fas fa-space-shuttle fa-3x" style="position:relative; right:-200px; width:1%"></p>
+      </span>
     </div>
-    <div  id="sticky-footer" class="fixed-bottom bg-dark text-white-50"  >
-      <div class="container text-center">
-        <small>Copyright &copy; Your Website</small>
-      </div>
+    <div>
+      <span style=" color:Dodgerblue;">
+        <p id="rocketId2" class="fas fa-space-shuttle fa-3x"></p>
+      </span>
+    </div>
+
+
+  </div>
+  <div class="w-75 ">
+
+  </div>
+  </div>
+  <div id="sticky-footer" class="fixed-bottom bg-dark text-white-50">
+    <div class="container text-center">
+      <small>Copyright &copy; Your Website</small>
     </div>
   </div>
-  
+  </div>
+
   <script src="../controllers/mycontroller.js"></script>
   <script src="../views/js/myview.js"></script>
   <script src="../models/thruster.js"></script>
