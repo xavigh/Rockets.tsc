@@ -43,7 +43,7 @@ class Rocket {
         console.log("Thrust array " + myjson);
         
         var sp = speedOfRocket(aRocket);
-        rocket1.moveRocket1(sp);
+        rocket1.moveRocket(aRocket);
 
             (rocket1)? showRocket1Info() : false;
             (rocket2)? showRocket2Info() : false;   
@@ -72,19 +72,24 @@ class Rocket {
         let myjson = JSON.stringify(aRocket.thrustersArray);
         console.log("Thrust array " + myjson);
         var sp= speedOfRocket(aRocket);
-        rocket1.moveRocket1(sp);
+        aRocket.moveRocket(aRocket);
         return aRocket.speedRocket;
     }
 
     // move rockets
-    moveRocket1(speedRocket1:number){
+    moveRocket(aRocket:Rocket){
       
-  
-            var elem = <HTMLElement>document.getElementById("rocketId1"); 
-            var pos:number = (rocket1.launchRocket)? pos = rocket1.position : pos = 0;
-            let speed = speedRocket1/1000;
+            var spaceShip1 = <HTMLElement>document.getElementById("rocketId1");
+            var spaceShip2 = <HTMLElement>document.getElementById("rocketId2");
+            var elem1:HTMLElement;
+            var elem2:HTMLElement;
+            (rocket1)? elem1 = spaceShip1: false;
+            (rocket2)? elem2 = spaceShip2: false;
+
+            var pos:number = (aRocket.launchRocket)? pos = aRocket.position : pos = 0;
+            let speed = aRocket.speedRocket/1000;
            var id:number;
-            (rocket1.launchRocket)? false : id = setInterval(frame, 1);
+            (aRocket.launchRocket && speed == 0)? false : id = setInterval(frame, 1);
 
             function frame() {
                     if (pos >= 800 || speed == 0) {
@@ -92,12 +97,13 @@ class Rocket {
                         pos = pos;
                     } else {                       
                         pos+= speed; 
-                        rocket1.position = pos;
-                        elem.style.left =  pos + 'px'; 
-                        speed = speedOfRocket(rocket1) / 1000;
+                        aRocket.position = pos;
+                       (rocket1)? elem1.style.left =  pos + 'px': false;
+                       (rocket2)? elem2.style.left =  pos + 'px': false;
+                        speed = speedOfRocket(aRocket) / 1000;
                     }
             }       
-            rocket1.launchRocket = true;
+            aRocket.launchRocket = true;
     }
 
 
