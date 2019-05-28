@@ -1,12 +1,13 @@
 "use strict";
 var Rocket = /** @class */ (function () {
-    function Rocket(rocketId, numThrusters, colorRocket, speedRocket, launchRocket) {
+    function Rocket(rocketId, numThrusters, colorRocket, speedRocket, launchRocket, position) {
         this.thrustersArray = new Array();
         this.rocketId = rocketId;
         this.numThrusters = numThrusters;
         this.colorRocket = colorRocket;
         this.speedRocket = speedRocket;
         this.launchRocket = launchRocket;
+        this.position = position;
     }
     // to add thrusters to the rocket object
     Rocket.prototype.addThruster = function (thrusterX) {
@@ -26,7 +27,8 @@ var Rocket = /** @class */ (function () {
         }
         var myjson = JSON.stringify(aRocket.thrustersArray);
         console.log("Thrust array " + myjson);
-        speedOfRocket(aRocket);
+        var sp = speedOfRocket(aRocket);
+        rocket1.moveRocket1(sp);
         (rocket1) ? showRocket1Info() : false;
         (rocket2) ? showRocket2Info() : false;
         return aRocket.speedRocket;
@@ -47,23 +49,30 @@ var Rocket = /** @class */ (function () {
         }
         var myjson = JSON.stringify(aRocket.thrustersArray);
         console.log("Thrust array " + myjson);
-        speedOfRocket(aRocket);
+        var sp = speedOfRocket(aRocket);
+        rocket1.moveRocket1(sp);
         return aRocket.speedRocket;
     };
     // move rockets
-    Rocket.prototype.moveRocket1 = function () {
+    Rocket.prototype.moveRocket1 = function (speedRocket1) {
         var elem = document.getElementById("rocketId1");
-        var right = 1;
-        var id = setInterval(frame, 10);
+        var pos = (rocket1.launchRocket) ? pos = rocket1.position : pos = 0;
+        var speed = speedRocket1 / 1000;
+        var id;
+        (rocket1.launchRocket) ? false : id = setInterval(frame, 1);
         function frame() {
-            if (right >= 1800) {
+            if (pos >= 800 || speed == 0) {
                 clearInterval(id);
+                pos = pos;
             }
             else {
-                right--;
-                elem.style.position = right + 'px';
+                pos += speed;
+                rocket1.position = pos;
+                elem.style.left = pos + 'px';
+                speed = speedOfRocket(rocket1) / 1000;
             }
         }
+        rocket1.launchRocket = true;
     };
     return Rocket;
 }()); // end Rocket

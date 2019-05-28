@@ -5,7 +5,7 @@ function showRocket1Info(){
     
     rocket1Info.innerHTML = "Rocket id = " + rocket1.rocketId +
      "<br> number of Thrusters = "+ rocket1.numThrusters+
-     "<br> max thrust = (" + `${maxThrustArrIteration(rocket1.thrustersArray) }`+ "). "+
+     "<br> max thrust = (" + `${ maxThrustArrIteration(rocket1.thrustersArray) }`+ "). "+
     "<br>Speed of Rocket 1 is "+ rocket1.speedRocket;    
 //*** here i have a question about the String Template, how to use it a when as the String template can be change 
 //to leave the function itself and also works?? */

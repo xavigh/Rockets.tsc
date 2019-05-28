@@ -9,19 +9,23 @@ class Rocket {
     speedRocket: number;
     thrustersArray: Thruster[] = new Array();
     launchRocket: boolean;
+    position:number;
 
-    constructor(rocketId: string, numThrusters: number, colorRocket: string, speedRocket: number, launchRocket: boolean) {
+    constructor(rocketId: string, numThrusters: number, colorRocket: string, speedRocket: number, launchRocket: boolean, position:number) {
         this.rocketId = rocketId;
         this.numThrusters = numThrusters;
         this.colorRocket = colorRocket;
         this.speedRocket = speedRocket;
         this.launchRocket = launchRocket;
+        this.position = position;
 
     }
     // to add thrusters to the rocket object
     addThruster(thrusterX: Thruster): void {
         this.thrustersArray.push(thrusterX);
     }
+    
+    
     // accelerate method, increase of 10 each thruster
     accelerate(aRocket: Rocket): number {
         //increase by 10 the current thrust of each thruster but check its max thrust
@@ -37,11 +41,13 @@ class Rocket {
         }
         let myjson = JSON.stringify(aRocket.thrustersArray);
         console.log("Thrust array " + myjson);
-
-        speedOfRocket(aRocket);
+        
+        var sp = speedOfRocket(aRocket);
+        rocket1.moveRocket1(sp);
 
             (rocket1)? showRocket1Info() : false;
             (rocket2)? showRocket2Info() : false;   
+
         return aRocket.speedRocket;
     }
 
@@ -65,25 +71,33 @@ class Rocket {
         }
         let myjson = JSON.stringify(aRocket.thrustersArray);
         console.log("Thrust array " + myjson);
-        speedOfRocket(aRocket);
+        var sp= speedOfRocket(aRocket);
+        rocket1.moveRocket1(sp);
         return aRocket.speedRocket;
     }
 
     // move rockets
-    moveRocket1(){
-       
+    moveRocket1(speedRocket1:number){
+      
+  
             var elem = <HTMLElement>document.getElementById("rocketId1"); 
-            var right= 1 ;
+            var pos:number = (rocket1.launchRocket)? pos = rocket1.position : pos = 0;
+            let speed = speedRocket1/1000;
+           var id:number;
+            (rocket1.launchRocket)? false : id = setInterval(frame, 1);
 
-            var id = setInterval(frame, 10);
             function frame() {
-              if (right >= 1800) {
-                clearInterval(id);
-              } else {
-                right--; 
-                elem.style.position =  right + 'px'; 
-              }
-            }
+                    if (pos >= 800 || speed == 0) {
+                        clearInterval(id);
+                        pos = pos;
+                    } else {                       
+                        pos+= speed; 
+                        rocket1.position = pos;
+                        elem.style.left =  pos + 'px'; 
+                        speed = speedOfRocket(rocket1) / 1000;
+                    }
+            }       
+            rocket1.launchRocket = true;
     }
 
 

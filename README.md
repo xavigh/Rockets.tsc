@@ -2,8 +2,7 @@
 Exercise to practice Typescript using MVC architecture from IT Academy
 
 # Pseudocode
-
-Create Rocket Class{}
+class Rocket{}
 	//rocket properties:
 	rocketId: string; ( 8 characters and a number of thrusters for each rocket)
 	colorRocket:string;

@@ -17,8 +17,8 @@ var thrusterRocket230;
 var thrusterRocket240;
 //create rockets
 function createRocket1() {
-    //object rocket id, num of Thrusters, color, speed, launched false/true.
-    rocket1 = new Rocket("32WESSDS", 3, "Red", 0, false);
+    //object rocket id, num of Thrusters, color, speed, launched false/true, position
+    rocket1 = new Rocket("32WESSDS", 3, "Red", 0, false, 0);
     var thrusterRocket1_10 = new Thruster("th0110", 10, 0);
     var thrusterRocket1_30 = new Thruster("th0130", 30, 0);
     var thrusterRocket1_80 = new Thruster("th0180", 80, 0);
@@ -27,10 +27,9 @@ function createRocket1() {
     rocket1.addThruster(thrusterRocket1_30);
     rocket1.addThruster(thrusterRocket1_80);
     showRocket1Info();
-    rocket1.moveRocket1();
 }
 function createRocket2() {
-    rocket2 = new Rocket("LDSFJA32", 6, "Blue", 0, false);
+    rocket2 = new Rocket("LDSFJA32", 6, "Blue", 0, false, 0);
     var thrusterRocket230 = new Thruster("th0230", 30, 0);
     var thrusterRocket240 = new Thruster("th40", 40, 0);
     var thrusterRocket250 = new Thruster("th250", 50, 0);
