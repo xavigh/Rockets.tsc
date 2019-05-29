@@ -51,7 +51,7 @@ class Rocket {
 
 
     //break method, decrease of 10 each thruster
-    breakRocket(): number {
+    breakRocket(): void {
         for (let i = 0; i <= this.thrustersArray.length - 1; i++) {
 
             let arrthrust = this.thrustersArray[i];
@@ -71,7 +71,7 @@ class Rocket {
         console.log("Thrust array " + myjson);
         var sp= speedOfRocket(this);
         this.moveRocket();
-        return this.speedRocket;
+        
     }
 
     // move rockets
@@ -93,7 +93,7 @@ class Rocket {
                      
                 if (_this.position >= 800 || _this.speedRocket == 0) {
                     clearInterval(id);
-                    _this.position = _this.position;
+                    //_this.position = _this.position;
                     _this.launchRocket = false;
         
                 } else {  _this.position+=0.05;                   

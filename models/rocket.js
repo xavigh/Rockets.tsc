@@ -49,7 +49,6 @@ var Rocket = /** @class */ (function () {
         console.log("Thrust array " + myjson);
         var sp = speedOfRocket(this);
         this.moveRocket();
-        return this.speedRocket;
     };
     // move rockets
     Rocket.prototype.moveRocket = function () {
@@ -67,7 +66,7 @@ var Rocket = /** @class */ (function () {
             var elem2 = document.getElementById("rocketId2");
             if (_this.position >= 800 || _this.speedRocket == 0) {
                 clearInterval(id);
-                _this.position = _this.position;
+                //_this.position = _this.position;
                 _this.launchRocket = false;
             }
             else {
