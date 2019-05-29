@@ -27,6 +27,7 @@ var Rocket = /** @class */ (function () {
         var myjson = JSON.stringify(this.thrustersArray);
         console.log("Thrust array " + myjson);
         speedOfRocket(this);
+        //speedText1();
         this.moveRocket();
         (this == rocket1) ? showRocket1Info() : false;
         (this == rocket2) ? showRocket2Info() : false;
@@ -37,7 +38,7 @@ var Rocket = /** @class */ (function () {
             var arrthrust = this.thrustersArray[i];
             if (arrthrust.currentThrust > 0) {
                 arrthrust.currentThrust -= 10;
-                this.speedRocket -= 10;
+                this.speedRocket -= this.speedRocket / 2;
             }
             else {
                 console.log(arrthrust.thrusterId + ", " + arrthrust.currentThrust + "is the minimum thrust");
@@ -48,6 +49,7 @@ var Rocket = /** @class */ (function () {
         var myjson = JSON.stringify(this.thrustersArray);
         console.log("Thrust array " + myjson);
         var sp = speedOfRocket(this);
+        //speedText1();
         this.moveRocket();
     };
     // move rockets
@@ -65,15 +67,16 @@ var Rocket = /** @class */ (function () {
             var elem1 = document.getElementById("rocketId1");
             var elem2 = document.getElementById("rocketId2");
             if (_this.position >= 800 || _this.speedRocket == 0) {
-                clearInterval(id);
-                //_this.position = _this.position;
+                // clearInterval(id);
+                _this.position = 0;
                 _this.launchRocket = false;
             }
             else {
-                _this.position += 0.05;
+                _this.position += _this.speedRocket / 1000;
                 _this.launchRocket = true;
                 (_this == rocket1) ? elem1.style.left = _this.position + 'px' : false;
                 (_this == rocket2) ? elem2.style.left = _this.position + 'px' : false;
+                rocketId1.innerHTML = "speed :" + rocket1.speedRocket + "pos: " + rocket1.position;
             }
         } // end frame          
     }; // end moveRocket()

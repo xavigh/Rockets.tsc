@@ -9,9 +9,9 @@ class Rocket {
     speedRocket: number;
     thrustersArray: Thruster[] = new Array();
     launchRocket: boolean;
-    position:number;
+    position: number;
 
-    constructor(rocketId: string, numThrusters: number, colorRocket: string, speedRocket: number, launchRocket: boolean, position:number) {
+    constructor(rocketId: string, numThrusters: number, colorRocket: string, speedRocket: number, launchRocket: boolean, position: number) {
         this.rocketId = rocketId;
         this.numThrusters = numThrusters;
         this.colorRocket = colorRocket;
@@ -24,12 +24,15 @@ class Rocket {
     addThruster(thrusterX: Thruster): void {
         this.thrustersArray.push(thrusterX);
     }
-       
+
     // accelerate method, increase of 10 each thruster
     accelerate(): void {
+
+
+
         //increase by 10 the current thrust of each thruster but check its max thrust
         for (let i = 0; i <= this.thrustersArray.length - 1; i++) {
-           
+
             if (this.thrustersArray[i].currentThrust < this.thrustersArray[i].thrustMaxPower) {
                 this.thrustersArray[i].currentThrust += 10;
             }
@@ -39,14 +42,16 @@ class Rocket {
         }
         let myjson = JSON.stringify(this.thrustersArray);
         console.log("Thrust array " + myjson);
-        
+
         speedOfRocket(this);
+        //speedText1();
         this.moveRocket();
 
-            (this == rocket1)? showRocket1Info() : false;
-            (this == rocket2)? showRocket2Info() : false;   
 
-        
+        (this == rocket1) ? showRocket1Info() : false;
+        (this == rocket2) ? showRocket2Info() : false;
+
+
     }
 
 
@@ -58,58 +63,61 @@ class Rocket {
 
             if (arrthrust.currentThrust > 0) {
                 arrthrust.currentThrust -= 10;
-                this.speedRocket -= 10;
+                this.speedRocket -= this.speedRocket/2;
             }
             else {
                 console.log(arrthrust.thrusterId + ", " + arrthrust.currentThrust + "is the minimum thrust");
             }
-            (rocket1)? showRocket1Info() : false;
-            (rocket2)? showRocket2Info() : false;   
-            
+            (rocket1) ? showRocket1Info() : false;
+            (rocket2) ? showRocket2Info() : false;
+
         }
         let myjson = JSON.stringify(this.thrustersArray);
         console.log("Thrust array " + myjson);
-        var sp= speedOfRocket(this);
+        var sp = speedOfRocket(this);
+        //speedText1();
         this.moveRocket();
-        
+
     }
 
     // move rockets
-    moveRocket(){
-                  
+    moveRocket() {
+
         this.launchRocket = true;
-        var id:number=0;
+        var id: number = 0;
         let _this = this;
-            
-        if(this.launchRocket && this.speedRocket == 0){
+
+        if (this.launchRocket && this.speedRocket == 0) {
             false;
-          }else{
-            var id = setInterval(frame , 1);
-        } 
-            function frame(){          
-                var elem1 = <HTMLElement>document.getElementById("rocketId1");
-                var elem2  = <HTMLElement>document.getElementById("rocketId2");            
-      
-                     
-                if (_this.position >= 800 || _this.speedRocket == 0) {
-                    clearInterval(id);
-                    //_this.position = _this.position;
-                    _this.launchRocket = false;
-        
-                } else {  _this.position+=0.05;                   
-                    _this.launchRocket = true;        
-                    (_this == rocket1)? elem1.style.left =  _this.position + 'px': false;
-                    (_this == rocket2)? elem2.style.left =  _this.position + 'px': false;
-                }
-               
-                
-            } // end frame          
-       }// end moveRocket()
-   
-    
-    
-
-    
+        } else {
+            var id = setInterval(frame, 1);
+        }
+        function frame() {
+            var elem1 = <HTMLElement>document.getElementById("rocketId1");
+            var elem2 = <HTMLElement>document.getElementById("rocketId2");
 
 
-    }// end Rocket
+            if (_this.position >= 800 || _this.speedRocket == 0) {
+               // clearInterval(id);
+                _this.position =0;
+                _this.launchRocket = false;
+
+            } else {
+            _this.position += _this.speedRocket / 1000;
+                _this.launchRocket = true;
+                (_this == rocket1) ? elem1.style.left = _this.position + 'px' : false;
+                (_this == rocket2) ? elem2.style.left = _this.position + 'px' : false;
+               rocketId1.innerHTML = "speed :"+ rocket1.speedRocket +"pos: "+ rocket1.position;
+            }
+
+
+        } // end frame          
+    }// end moveRocket()
+
+
+
+
+
+
+
+}// end Rocket
