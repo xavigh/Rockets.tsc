@@ -43,8 +43,8 @@ class Rocket {
         speedOfRocket(this);
         this.moveRocket();
 
-            (rocket1)? showRocket1Info() : false;
-            (rocket2)? showRocket2Info() : false;   
+            (this == rocket1)? showRocket1Info() : false;
+            (this == rocket2)? showRocket2Info() : false;   
 
         
     }
@@ -79,42 +79,32 @@ class Rocket {
                   
         this.launchRocket = true;
         var id:number=0;
-        
+        let _this = this;
             
         if(this.launchRocket && this.speedRocket == 0){
             false;
           }else{
-            var id = setInterval(frame() , 1);
-          } 
-            function frame(){
-
-            var position = 0;      
-            var speed = speedRocket/1000;      
-          
-            var elem1:HTMLElement= <HTMLElement>document.getElementById("rocketId1");
-            var elem2:HTMLElement = <HTMLElement>document.getElementById("rocketId2");
-            (rocket1)? elem1 = elem1: false;
-            (rocket2)? elem2 = elem2: false;
+            var id = setInterval(frame , 1);
+        } 
+            function frame(){          
+                var elem1 = <HTMLElement>document.getElementById("rocketId1");
+                var elem2  = <HTMLElement>document.getElementById("rocketId2");            
       
                      
-            if (position >= 800 || speedRocket == 0) {
-                clearInterval(id);
-                position = position;
-                launchRocket = false;
-    
-            } else {  position++;    }                  
-              
-                
-                (rocket1)? elem1.style.left =  this.position + 'px': false;
-                (rocket2)? elem2.style.left =  this.position + 'px': false;
+                if (_this.position >= 800 || _this.speedRocket == 0) {
+                    clearInterval(id);
+                    _this.position = _this.position;
+                    _this.launchRocket = false;
+        
+                } else {  _this.position+=0.05;                   
+                    _this.launchRocket = true;        
+                    (_this == rocket1)? elem1.style.left =  _this.position + 'px': false;
+                    (_this == rocket2)? elem2.style.left =  _this.position + 'px': false;
+                }
                
                 
-    }            
-              
-       
-          
-
-    }// end moveRocket()
+            } // end frame          
+       }// end moveRocket()
    
     
     
