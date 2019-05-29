@@ -24,39 +24,37 @@ class Rocket {
     addThruster(thrusterX: Thruster): void {
         this.thrustersArray.push(thrusterX);
     }
-    
-    
+       
     // accelerate method, increase of 10 each thruster
-    accelerate(aRocket: Rocket): number {
+    accelerate(): void {
         //increase by 10 the current thrust of each thruster but check its max thrust
-        for (let i = 0; i <= aRocket.thrustersArray.length - 1; i++) {
-            let thrustArr = aRocket.thrustersArray[i];
-
-            if (thrustArr.currentThrust < aRocket.thrustersArray[i].thrustMaxPower) {
-                thrustArr.currentThrust += 10;
+        for (let i = 0; i <= this.thrustersArray.length - 1; i++) {
+           
+            if (this.thrustersArray[i].currentThrust < this.thrustersArray[i].thrustMaxPower) {
+                this.thrustersArray[i].currentThrust += 10;
             }
             else {
-                console.log(thrustArr.thrusterId + ", " + thrustArr.currentThrust + "is the max thrust");
+                console.log(this.thrustersArray[i].thrusterId + ", " + this.thrustersArray[i].currentThrust + "is the max thrust");
             }
         }
-        let myjson = JSON.stringify(aRocket.thrustersArray);
+        let myjson = JSON.stringify(this.thrustersArray);
         console.log("Thrust array " + myjson);
         
-        var sp = speedOfRocket(aRocket);
-        rocket1.moveRocket(aRocket);
+        speedOfRocket(this);
+        this.moveRocket();
 
             (rocket1)? showRocket1Info() : false;
             (rocket2)? showRocket2Info() : false;   
 
-        return aRocket.speedRocket;
+        
     }
 
 
     //break method, decrease of 10 each thruster
-    breakRocket(aRocket: Rocket): number {
-        for (let i = 0; i <= aRocket.thrustersArray.length - 1; i++) {
+    breakRocket(): number {
+        for (let i = 0; i <= this.thrustersArray.length - 1; i++) {
 
-            let arrthrust = aRocket.thrustersArray[i];
+            let arrthrust = this.thrustersArray[i];
 
             if (arrthrust.currentThrust > 0) {
                 arrthrust.currentThrust -= 10;
@@ -69,45 +67,59 @@ class Rocket {
             (rocket2)? showRocket2Info() : false;   
             
         }
-        let myjson = JSON.stringify(aRocket.thrustersArray);
+        let myjson = JSON.stringify(this.thrustersArray);
         console.log("Thrust array " + myjson);
-        var sp= speedOfRocket(aRocket);
-        aRocket.moveRocket(aRocket);
-        return aRocket.speedRocket;
+        var sp= speedOfRocket(this);
+        this.moveRocket();
+        return this.speedRocket;
     }
 
     // move rockets
-    moveRocket(aRocket:Rocket){
+    moveRocket(){
+                  
+        this.launchRocket = true;
+        var id:number=0;
+        
+            
+        if(this.launchRocket && this.speedRocket == 0){
+            false;
+          }else{
+            var id = setInterval(frame() , 1);
+          } 
+            function frame(){
+
+            var position = 0;      
+            var speed = speedRocket/1000;      
+          
+            var elem1:HTMLElement= <HTMLElement>document.getElementById("rocketId1");
+            var elem2:HTMLElement = <HTMLElement>document.getElementById("rocketId2");
+            (rocket1)? elem1 = elem1: false;
+            (rocket2)? elem2 = elem2: false;
       
-            var spaceShip1 = <HTMLElement>document.getElementById("rocketId1");
-            var spaceShip2 = <HTMLElement>document.getElementById("rocketId2");
-            var elem1:HTMLElement;
-            var elem2:HTMLElement;
-            (rocket1)? elem1 = spaceShip1: false;
-            (rocket2)? elem2 = spaceShip2: false;
+                     
+            if (position >= 800 || speedRocket == 0) {
+                clearInterval(id);
+                position = position;
+                launchRocket = false;
+    
+            } else {  position++;    }                  
+              
+                
+                (rocket1)? elem1.style.left =  this.position + 'px': false;
+                (rocket2)? elem2.style.left =  this.position + 'px': false;
+               
+                
+    }            
+              
+       
+          
 
-            var pos:number = (aRocket.launchRocket)? pos = aRocket.position : pos = 0;
-            let speed = aRocket.speedRocket/1000;
-           var id:number;
-            (aRocket.launchRocket && speed == 0)? false : id = setInterval(frame, 1);
+    }// end moveRocket()
+   
+    
+    
 
-            function frame() {
-                    if (pos >= 800 || speed == 0) {
-                        clearInterval(id);
-                        pos = pos;
-                    } else {                       
-                        pos+= speed; 
-                        aRocket.position = pos;
-                       (rocket1)? elem1.style.left =  pos + 'px': false;
-                       (rocket2)? elem2.style.left =  pos + 'px': false;
-                        speed = speedOfRocket(aRocket) / 1000;
-                    }
-            }       
-            aRocket.launchRocket = true;
-    }
+    
 
 
-
-
-
-}// end Rocket
+    }// end Rocket

@@ -14,29 +14,27 @@ var Rocket = /** @class */ (function () {
         this.thrustersArray.push(thrusterX);
     };
     // accelerate method, increase of 10 each thruster
-    Rocket.prototype.accelerate = function (aRocket) {
+    Rocket.prototype.accelerate = function () {
         //increase by 10 the current thrust of each thruster but check its max thrust
-        for (var i = 0; i <= aRocket.thrustersArray.length - 1; i++) {
-            var thrustArr = aRocket.thrustersArray[i];
-            if (thrustArr.currentThrust < aRocket.thrustersArray[i].thrustMaxPower) {
-                thrustArr.currentThrust += 10;
+        for (var i = 0; i <= this.thrustersArray.length - 1; i++) {
+            if (this.thrustersArray[i].currentThrust < this.thrustersArray[i].thrustMaxPower) {
+                this.thrustersArray[i].currentThrust += 10;
             }
             else {
-                console.log(thrustArr.thrusterId + ", " + thrustArr.currentThrust + "is the max thrust");
+                console.log(this.thrustersArray[i].thrusterId + ", " + this.thrustersArray[i].currentThrust + "is the max thrust");
             }
         }
-        var myjson = JSON.stringify(aRocket.thrustersArray);
+        var myjson = JSON.stringify(this.thrustersArray);
         console.log("Thrust array " + myjson);
-        var sp = speedOfRocket(aRocket);
-        rocket1.moveRocket(aRocket);
+        speedOfRocket(this);
+        this.moveRocket();
         (rocket1) ? showRocket1Info() : false;
         (rocket2) ? showRocket2Info() : false;
-        return aRocket.speedRocket;
     };
     //break method, decrease of 10 each thruster
-    Rocket.prototype.breakRocket = function (aRocket) {
-        for (var i = 0; i <= aRocket.thrustersArray.length - 1; i++) {
-            var arrthrust = aRocket.thrustersArray[i];
+    Rocket.prototype.breakRocket = function () {
+        for (var i = 0; i <= this.thrustersArray.length - 1; i++) {
+            var arrthrust = this.thrustersArray[i];
             if (arrthrust.currentThrust > 0) {
                 arrthrust.currentThrust -= 10;
                 this.speedRocket -= 10;
@@ -47,38 +45,40 @@ var Rocket = /** @class */ (function () {
             (rocket1) ? showRocket1Info() : false;
             (rocket2) ? showRocket2Info() : false;
         }
-        var myjson = JSON.stringify(aRocket.thrustersArray);
+        var myjson = JSON.stringify(this.thrustersArray);
         console.log("Thrust array " + myjson);
-        var sp = speedOfRocket(aRocket);
-        aRocket.moveRocket(aRocket);
-        return aRocket.speedRocket;
+        var sp = speedOfRocket(this);
+        this.moveRocket();
+        return this.speedRocket;
     };
     // move rockets
-    Rocket.prototype.moveRocket = function (aRocket) {
-        var spaceShip1 = document.getElementById("rocketId1");
-        var spaceShip2 = document.getElementById("rocketId2");
-        var elem1;
-        var elem2;
-        (rocket1) ? elem1 = spaceShip1 : false;
-        (rocket2) ? elem2 = spaceShip2 : false;
-        var pos = (aRocket.launchRocket) ? pos = aRocket.position : pos = 0;
-        var speed = aRocket.speedRocket / 1000;
-        var id;
-        (aRocket.launchRocket && speed == 0) ? false : id = setInterval(frame, 1);
+    Rocket.prototype.moveRocket = function () {
+        this.launchRocket = true;
+        var id = 0;
+        if (this.launchRocket && this.speedRocket == 0) {
+            false;
+        }
+        else {
+            var id = setInterval(frame(), 1);
+        }
         function frame() {
-            if (pos >= 800 || speed == 0) {
+            var position = 0;
+            var speed = speedRocket / 1000;
+            var elem1 = document.getElementById("rocketId1");
+            var elem2 = document.getElementById("rocketId2");
+            (rocket1) ? elem1 = elem1 : false;
+            (rocket2) ? elem2 = elem2 : false;
+            if (position >= 800 || speedRocket == 0) {
                 clearInterval(id);
-                pos = pos;
+                position = position;
+                launchRocket = false;
             }
             else {
-                pos += speed;
-                aRocket.position = pos;
-                (rocket1) ? elem1.style.left = pos + 'px' : false;
-                (rocket2) ? elem2.style.left = pos + 'px' : false;
-                speed = speedOfRocket(aRocket) / 1000;
+                position++;
             }
+            (rocket1) ? elem1.style.left = this.position + 'px' : false;
+            (rocket2) ? elem2.style.left = this.position + 'px' : false;
         }
-        aRocket.launchRocket = true;
-    };
+    }; // end moveRocket()
     return Rocket;
 }()); // end Rocket

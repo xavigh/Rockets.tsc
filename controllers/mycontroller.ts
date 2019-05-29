@@ -71,3 +71,4 @@ function speedOfRocket(aRocket: Rocket) {
     console.log("speed of rocket= " + aRocket.speedRocket);
     return aRocket.speedRocket;
 }
+ 
