@@ -72,31 +72,46 @@ function createRocket2() {
 
 }
 
-
+// get speed of Rocket.
 function speedOfRocket(aRocket: Rocket) {
     aRocket.speedRocket = 0;
+
     for (var i = 0; i <= aRocket.thrustersArray.length - 1; i++) {
-        aRocket.speedRocket += aRocket.thrustersArray[i].currentThrust;
-       
+        if(aRocket.speedRocket >= 210 && aRocket.thrustersArray[i].currentThrust >= aRocket.thrustersArray[i].thrustMaxPower){
+            aRocket.speedRocket = 0;
+        }else{
+            aRocket.speedRocket += aRocket.thrustersArray[i].currentThrust; 
+        }
+
     }
     console.log("speed of rocket= " + aRocket.speedRocket);
-    return aRocket.speedRocket;
-}
+        return aRocket.speedRocket;
+    }
  
-function changeColorAccelerate():void{   
-    rocketId1.classList.toggle("accelerate");
-   
-}
+    function changeColorAccelerate():void{   
+        rocketId1.classList.toggle("accelerate");
+        
+        
+        
+    
+    }
 
-function changeColorBreak():void{
-    rocketId1.classList.toggle("break");
-}
+    function changeColorBreak():void{
+        rocketId1.classList.toggle("break");  
+        
 
-function changeColorAccelerate2():void{   
-    rocketId2.classList.toggle("accelerate");
-   
-}
+        
+    
+    }
 
-function changeColorBreak2():void{
-    rocketId2.classList.toggle("break");
-}
+    function changeColorAccelerate2():void{   
+        
+        rocketId2.classList.toggle("accelerate");
+    
+    
+    }
+
+    function changeColorBreak2():void{
+        
+        rocketId2.classList.toggle("break");
+    }

@@ -1,12 +1,11 @@
 /* Sticky Footer Classes */
 
-
 #rocketId1 {
     
     position: relative;
-    
+    color: red;
+    -ms-text-size-adjust: auto;
   }
-
 
   #rocketId2 {
 
@@ -15,15 +14,9 @@
   }
 
   .accelerate {
-    
-    -webkit-animation: myAccelerator 5s ; /* Safari 4.0 - 8.0 */
-    -webkit-animation-delay: 2s; /* Safari 4.0 - 8.0 */
-    animation: myAccelerator 2s ;
+    animation: myAccelerator 5s ;
     animation-delay: 0ms;
-    
   }
-
-  
 
   @-webkit-keyframes myAccelerator {
     from {border-left:6px solid red }
@@ -36,9 +29,8 @@
   }
 
   .break{
-    -webkit-animation: myBreak 5s ; /* Safari 4.0 - 8.0 */
-    -webkit-animation-delay: 2s; /* Safari 4.0 - 8.0 */
-    animation: myBreak 2s ;
+   
+    animation: myBreak 5s ;
     animation-delay: 0ms;
   }
 
@@ -50,4 +42,9 @@
   @keyframes myBreak {
     from {border-left:6px solid black }
     to {border-left:6px solid lime }
+  }
+
+  .txtspeed{
+    font-size: medium;
+    color:black;
   }

@@ -56,10 +56,16 @@ function createRocket2() {
     rocket2.addThruster(thrusterRocket210);
     showRocket2Info();
 }
+// get speed of Rocket.
 function speedOfRocket(aRocket) {
     aRocket.speedRocket = 0;
     for (var i = 0; i <= aRocket.thrustersArray.length - 1; i++) {
-        aRocket.speedRocket += aRocket.thrustersArray[i].currentThrust;
+        if (aRocket.speedRocket >= 210 && aRocket.thrustersArray[i].currentThrust >= aRocket.thrustersArray[i].thrustMaxPower) {
+            aRocket.speedRocket = 0;
+        }
+        else {
+            aRocket.speedRocket += aRocket.thrustersArray[i].currentThrust;
+        }
     }
     console.log("speed of rocket= " + aRocket.speedRocket);
     return aRocket.speedRocket;
