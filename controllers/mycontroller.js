@@ -4,6 +4,16 @@ var rocket1Info = document.getElementById("rocket1Info");
 var rocket2Info = document.getElementById("rocket2Info");
 var rocketId1 = document.getElementById("rocketId1");
 var rocketId2 = document.getElementById("rocketId2");
+//rocket effects when click accelerate and break
+var accelerateButton1 = document.getElementById("accelerateButton1");
+var breakButton1 = document.getElementById("breakButton1");
+var accelerateButton2 = document.getElementById("accelerateButton2");
+var breakButton2 = document.getElementById("breakButton2");
+// add event listeners to the buttons when click
+accelerateButton1.addEventListener("click", changeColorAccelerate);
+breakButton1.addEventListener("click", changeColorBreak);
+accelerateButton2.addEventListener("click", changeColorAccelerate2);
+breakButton2.addEventListener("click", changeColorBreak2);
 // define Rockets
 var rocket1;
 var rocket2;
@@ -17,6 +27,7 @@ var thrusterRocket230;
 var thrusterRocket240;
 //create rockets
 function createRocket1() {
+    rocketId1.classList.remove("d-none");
     //object rocket id, num of Thrusters, color, speed, launched false/true, position
     rocket1 = new Rocket("32WESSDS", 3, "Red", 0, false, 0);
     var thrusterRocket1_10 = new Thruster("th0110", 10, 0);
@@ -29,6 +40,7 @@ function createRocket1() {
     showRocket1Info();
 }
 function createRocket2() {
+    rocketId2.classList.remove("d-none");
     rocket2 = new Rocket("LDSFJA32", 6, "Blue", 0, false, 0);
     var thrusterRocket230 = new Thruster("th0230", 30, 0);
     var thrusterRocket240 = new Thruster("th40", 40, 0);
@@ -44,11 +56,29 @@ function createRocket2() {
     rocket2.addThruster(thrusterRocket210);
     showRocket2Info();
 }
+// get speed of Rocket.
 function speedOfRocket(aRocket) {
     aRocket.speedRocket = 0;
     for (var i = 0; i <= aRocket.thrustersArray.length - 1; i++) {
-        aRocket.speedRocket += aRocket.thrustersArray[i].currentThrust;
+        if (aRocket.speedRocket >= 210 && aRocket.thrustersArray[i].currentThrust >= aRocket.thrustersArray[i].thrustMaxPower) {
+            aRocket.speedRocket = 0;
+        }
+        else {
+            aRocket.speedRocket += aRocket.thrustersArray[i].currentThrust;
+        }
     }
     console.log("speed of rocket= " + aRocket.speedRocket);
     return aRocket.speedRocket;
+}
+function changeColorAccelerate() {
+    rocketId1.classList.toggle("accelerate");
+}
+function changeColorBreak() {
+    rocketId1.classList.toggle("break");
+}
+function changeColorAccelerate2() {
+    rocketId2.classList.toggle("accelerate");
+}
+function changeColorBreak2() {
+    rocketId2.classList.toggle("break");
 }

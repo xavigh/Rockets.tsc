@@ -1,15 +1,50 @@
 /* Sticky Footer Classes */
 
-
 #rocketId1 {
     
     position: relative;
-    
+    color: red;
+    -ms-text-size-adjust: auto;
   }
-
 
   #rocketId2 {
 
     position: relative;
+    
+  }
 
+  .accelerate {
+    animation: myAccelerator 5s ;
+    animation-delay: 0ms;
+  }
+
+  @-webkit-keyframes myAccelerator {
+    from {border-left:6px solid red }
+    to {border-left:6px solid yellow }
+  }
+  
+  @keyframes myAccelerator {
+    from {border-left:6px solid red }
+    to {border-left:6px solid yellow }
+  }
+
+  .break{
+   
+    animation: myBreak 5s ;
+    animation-delay: 0ms;
+  }
+
+  @-webkit-keyframes myBreak {
+    from {border-left:6px solid black }
+    to {border-left:6px solid lime }
+  }
+  
+  @keyframes myBreak {
+    from {border-left:6px solid black }
+    to {border-left:6px solid lime }
+  }
+
+  .txtspeed{
+    font-size: medium;
+    color:black;
   }
