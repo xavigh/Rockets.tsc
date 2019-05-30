@@ -64,6 +64,7 @@ var Rocket = /** @class */ (function () {
         else {
             var id = setInterval(frame, 1);
         }
+        //this function is necessary to make work the animation asynchronous of the two rockets.
         function frame() {
             var elem1 = document.getElementById("rocketId1");
             var elem2 = document.getElementById("rocketId2");
